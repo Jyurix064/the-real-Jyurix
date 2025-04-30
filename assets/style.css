@@ -1,0 +1,89 @@
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, #f0f8ff, #e6e6fa);
+  color: #333;
+}
+
+.header {
+  background-color: #4a90e2;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+.title-with-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.settings-icon {
+  color: white;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.what {
+  text-align: center;
+  padding: 2rem;
+}
+
+.what img {
+  max-width: 200px;
+  height: auto;
+}
+
+.what-text {
+  margin-top: 1rem;
+}
+
+.button-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+  justify-items: center;
+}
+
+.button-item {
+  text-align: center;
+}
+
+.button {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 1rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #357ab8;
+}
+
+.button-image {
+  width: 100%;
+  max-width: 275px;
+  height: auto;
+  border-radius: 5px;
+}
+
+.footer {
+  background-color: #4a90e2;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+.footer i {
+  color: red;
+}
+
