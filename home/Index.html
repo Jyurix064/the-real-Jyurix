@@ -10,103 +10,20 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background: linear-gradient(to bottom, #f0f8ff, #e6e6fa);
-        color: #333;
-      }
-
-      .header {
-        background-color: #4a90e2;
-        color: white;
-        padding: 1rem;
-        text-align: center;
-      }
-
-      .title-with-icon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-      }
-
-      .settings-icon {
-        color: white;
-        font-size: 1.5rem;
-        text-decoration: none;
-      }
-
-      .what {
-        text-align: center;
-        padding: 2rem;
-      }
-
-      .what img {
-        max-width: 200px;
-        height: auto;
-      }
-
-      .what-text {
-        margin-top: 1rem;
-      }
-
-      .button-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
-        gap: 1.5rem;
-        padding: 2rem;
-        justify-items: center;
-      }
-
-      .button-item {
-        text-align: center;
-      }
-
-      .button {
-        background-color: #4a90e2;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        padding: 1rem;
-        font-size: 1.1rem;
-        cursor: pointer;
-        transition: background-color 0.3s;
-      }
-
-      .button:hover {
-        background-color: #357ab8;
-      }
-
-      .button-image {
-        width: 100%;
-        max-width: 275px;
-        height: auto;
-        border-radius: 5px;
-      }
-
-      .footer {
-        background-color: #4a90e2;
-        color: white;
-        text-align: center;
-        padding: 1rem;
-        margin-top: 2rem;
-      }
-
-      .footer i {
-        color: red;
-      }
-    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/fontawesome.min.css"
+    />
+    <link rel="stylesheet" href="/assets/style.css" />
   </head>
 
   <body>
     <header class="header">
       <h1 class="title-with-icon">
-        <a href="../settings/" aria-label="Open Settings" class="settings-icon">
+        <!-- Commented out settings section -->
+        <!-- <a href="../settings/" aria-label="Open Settings" class="settings-icon">
           <i class="fas fa-cog"></i>
-        </a>
+        </a> -->
         <span class="title-text">
           Welcome to Jyurix Home,<br />
           your creative hub!
@@ -115,12 +32,11 @@
     </header>
     <main>
       <section class="what">
-        <img src="../assets/JyurixLogo.png" alt="Jyurix Logo" />
+        <img src="/assets/MY LOGO.png" alt="Jyurix Logo" />
         <br />
         <br />
         <div class="what-text">
           <h2>Discover Jyurix</h2>
-
           <p>
             Explore innovative projects, creative ideas, and a collection of
             prototypes. Dive into the archive and discover the journey of
@@ -133,7 +49,7 @@
         <div class="button-item">
           <button
             class="button"
-            onclick="location.href='../projects/'"
+            onclick="location.href='/Jyurika/'"
           >
             <img
               src="../assets/Projects.png"
@@ -143,35 +59,6 @@
             <span class="button-text">Projects</span>
           </button>
         </div>
-        <div class="button-item">
-          <button class="button" onclick="location.href='../gallery/'">
-            <img
-              src="../assets/Gallery.png"
-              alt="Gallery"
-              class="button-image"
-            />
-            <span class="button-text">Gallery</span>
-          </button>
-        </div>
-        <div class="button-item">
-          <button class="button" onclick="location.href='../blog/'">
-            <img
-              src="../assets/Blog.png"
-              alt="Blog"
-              class="button-image"
-            />
-            <span class="button-text">Blog</span>
-          </button>
-        </div>
-        <div class="button-item">
-          <button class="button" onclick="location.href='../contact/'">
-            <img
-              src="../assets/Contact.png"
-              alt="Contact"
-              class="button-image"
-            />
-            <span class="button-text">Contact</span>
-          </button>
         </div>
       </section>
     </main>
