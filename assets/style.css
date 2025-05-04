@@ -912,7 +912,7 @@ h3, h2, h1 {
   align-items: center; /* Center vertically */
   justify-content: center; /* Center horizontally */
   text-align: center; /* Ensure text is centered */
-  height: 100%; /* Ensure it takes full height if needed */
+  width: 100%; /* Full width */
 }
 
 .banner-image {
@@ -1060,37 +1060,39 @@ input:checked + .slider:before {
 
 /* Sidebar styles */
 .sidebar {
-  background: #1e1e1e; /* Updated background color */
+  position: absolute; /* Position relative to the main layout */
+  top: 100px; /* Start below the header */
+  left: 0;
+  width: 250px; /* Fixed width */
+  height: calc(100vh - 100px - 60px); /* Full height minus header and footer */
+  background: #1e1e1e; /* Sidebar background color */
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
-  min-height: calc(100vh);
+  overflow-y: auto; /* Enable scrolling if content overflows */
 }
 
-.sidebar-logo {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.sidebar-nav ul {
+.sidebar-nav {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.sidebar-nav ul li {
-  margin: 10px 0;
+.sidebar-nav li {
+  margin: 20px 0; /* Add spacing between items */
 }
 
-.sidebar-nav ul li a {
+.sidebar-nav li a {
   color: #e4e4e7;
   text-decoration: none;
-  display: block;
-  padding: 10px 0;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between icon and text */
   transition: color 0.3s ease;
 }
 
-.sidebar-nav ul li a:hover {
-  color: #ff4d4d;
+.sidebar-nav li a:hover {
+  color: darkred; /* Highlight color on hover */
 }
 
 /* Layout styles */
@@ -1099,8 +1101,8 @@ input:checked + .slider:before {
 }
 
 .main-content {
-  flex: 1;
-  padding-left: 20px;
+  margin-left: 270px; /* Add margin to account for the sidebar */
+  padding: 20px;
 }
 
 /* Center the "Our Services" heading */
@@ -1125,4 +1127,84 @@ input:checked + .slider:before {
 .diamond-icon {
   color: #b9f2ff; /* Diamond color */
   margin-right: 8px;
+}
+
+/* Pricing List Styles */
+.pricing-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.pricing-list li {
+  background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pricing-list li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+}
+
+.plan-link {
+  text-decoration: none;
+  color: #e4e4e7;
+  display: block;
+}
+
+.plan-link h3 {
+  margin: 0 0 10px;
+  font-size: 1.5rem;
+  color: darkred;
+}
+
+.plan-link p {
+  margin: 0;
+  font-size: 1rem;
+  color: #e4e4e7;
+}
+
+.note {
+  margin-top: 20px;
+  font-size: 1rem;
+  text-align: center;
+  color: #e4e4e7;
+}
+
+/* Error Section Styles */
+.error-section {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100vh; /* Full viewport height */
+  text-align: center;
+}
+
+.error-box {
+  background: #2a2a2a; /* Dark background for the box */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+  max-width: 400px;
+  width: 90%; /* Responsive width */
+  
+}
+
+.error-text {
+  font-size: 2.5rem;
+  color: red; /* Red color for "Error" */
+  margin: 0 0 10px;
+}
+
+.error-box p {
+  font-size: 1.2rem;
+  color: #e4e4e7; /* Light text color for the message */
+  margin: 0;
 }
