@@ -29,7 +29,7 @@ header {
 h1,
 h2 {
   margin: 0;
-  color: darkred; /* Darkened red */
+  color: #449B3A; /* Darkened red */
 }
 
 main {
@@ -61,36 +61,36 @@ footer {
   aspect-ratio: 3 / 2; /* Maintain a consistent aspect ratio */
   padding: 0; /* Remove padding to fit the image */
   margin: 20px auto; /* Center the button and add spacing */
-  background: #1e1e1e; /* Match sidebar color */
+  background: #121210; /* Match sidebar color */
   border: none;
   border-radius: 20px;
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: 0 0 10px darkred; /* Darkened red */
+  box-shadow: 0 0 10px #449B3A; /* Darkened red */
   transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .button:hover {
   transform: translate3d(10px, -10px, 10px); /* Lift the button on hover */
-  box-shadow: 0 0 15px darkred; /* Darkened red */
-  background: linear-gradient(135deg, #3a3a3a, #4a4a4a); /* Slightly brighter background */
-  border: 2px solid darkred; /* Darkened red */
-  animation: pulse-darkred 2s infinite alternate ease-in-out; /* Updated animation */
-  box-shadow: 0 0 15px maroon, 0 0 15px darkred; /* Darkened red */
-  border: 2px solid maroon; /* Darkened red */
+  box-shadow: 0 0 15px #449B3A; /* Darkened red */
+  /* background: linear-gradient(135deg, #3a3a3a, #4a4a4a); /* Slightly brighter background */
+  border: 2px solid #449B3A; /* Darkened red */
+  animation: pulse-dark-green 2s infinite alternate ease-in-out; /* Updated animation */
+  box-shadow: 0 0 15px rgb(0, 61, 0), 0 0 15px #449B3A; /* Darkened red */
+  border: 2px solid #449B3A; /* Darkened red */
 }
 
-@keyframes pulse-darkred {
+@keyframes pulse-dark-green {
   0% {
-    color: maroon; /* Darkened red */
-    box-shadow: 0 0 10px maroon, 0 0 14px darkred; /* Darkened red */
-    border-color: maroon; /* Darkened red */
+    color: #449B3A; /* Darkened red */
+    box-shadow: 0 0 10px #449B3A, 0 0 14px #449B3A; /* Darkened red */
+    border-color: #449B3A; /* Darkened red */
   }
   100% {
-    color: darkred; /* Darkened red */
-    box-shadow: 0 0 15px darkred, 0 0 14px maroon; /* Darkened red */
-    border-color: darkred; /* Darkened red */
+    color: #449B3A; /* Darkened red */
+    box-shadow: 0 0 15px #449B3A, 0 0 14px #449B3A; /* Darkened red */
+    border-color: #449B3A; /* Darkened red */
   }
 }
 
@@ -114,7 +114,7 @@ footer {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.3s ease, transform 0.3s ease;
-  animation: pulse-darkred 2s infinite alternate ease-in-out; /* Updated animation */
+  animation: pulse-#449B3A 2s infinite alternate ease-in-out; /* Updated animation */
 }
 
 @media (max-width: 768px) {
@@ -181,7 +181,7 @@ ul li a {
 }
 
 ul li a:hover {
-  color: darkred; /* Darkened red */
+  color: #449B3A; /* Darkened red */
   text-decoration: underline;
 }
 
@@ -192,7 +192,7 @@ a {
 }
 
 a:hover {
-  color: darkred; /* Darkened red */
+  color: #449B3A; /* Darkened red */
   text-decoration: underline;
 }
 
@@ -233,6 +233,9 @@ a:hover {
   position: relative;
   padding: 20px 60px; /* Increase padding for a wider header */
   text-align: center;
+  width: 100%; /* Ensure the header spans the full width */
+  box-sizing: border-box; /* Include padding and border in width calculation */
+  overflow: hidden; /* Prevent content overflow */
 }
 
 .header .close-button {
@@ -288,6 +291,7 @@ a:hover {
   text-align: center;
   max-width: 100%; /* Ensure buttons fit within their container */
   gap: 1rem;
+  margin:20px
 }
 
 .button {
@@ -337,38 +341,34 @@ a:hover {
 .link-button {
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Align content to the left */
+  justify-content: flex-start;
   gap: 10px;
   padding: 12px 24px;
   font-family: "Inter", sans-serif;
   font-size: 16px;
   font-weight: 500;
   color: #ffffff;
-  background: linear-gradient(135deg, #3a3a3a, #2a2a2a); /* Gray gradient */
+  background: linear-gradient(135deg, #3a3a3a, #2a2a2a);
   border: none;
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  letter-spacing: 0.5px; /* Keep slight spacing for readability */
-  -webkit-user-select: none; /* Prevent text selection for Safari */
-  user-select: none; /* Prevent text selection */
-  width: 600px; /* Ensure all buttons take the full width of their container */
-  max-width: 400px; /* Set a maximum width for consistency */
-  box-sizing: border-box; /* Include padding in width calculation */
+  width: 600px;
+  max-width: 400px;
+  box-sizing: border-box;
+  background-color: #346b2e;
+  color: white;
 }
 
 .link-button i {
-  font-size: 25px; /* Increased by 5% from 20px */
-  flex-shrink: 0; /* Prevent the icon from shrinking */
+  font-size: 25px;
+  flex-shrink: 0;
+  color: #449B3A; /* Apply dark green to all icons */
 }
 
 .link-button:hover {
-  background: linear-gradient(
-    135deg,
-    #2a2a2a,
-    #1a1a1a
-  ); /* Slightly darker gray on hover */
+  background: #449B3A;
   transform: translateY(-3px);
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
@@ -379,166 +379,44 @@ a:hover {
 }
 
 .link-button:focus {
-  outline: 2px solid #1a1a1a;
+  outline: 2px solid #449B3A; /* Dark red focus outline */
   outline-offset: 2px;
 }
 
+/* Specific Button Icon Colors */
+.link-button.youtube i,
+.link-button.twitch i,
+.link-button.tiktok i,
+.link-button.spotify i,
+.link-button.steam i,
+.link-button.discord i,
+.link-button.namemc i,
+.link-button.labymod i,
+.link-button.twitter i,
+.link-button.instagram i,
+.link-button.aniworld i,
+.link-button.onlyfans i {
+  color: #449B3A; /* Ensure all icons use dark red */
+}
+
 /* Twitch Button */
-.link-button.twitch {
+.link-button.youtube,
+.link-button.twitch,
+.link-button.tiktok,
+.link-button.spotify,
+.link-button.steam,
+.link-button.discord,
+.link-button.namemc,
+.link-button.labymod,
+.link-button.twitter,
+.link-button.instagram,
+.link-button.aniworld,
+.link-button.onlyfans {
   color: #ffffff;
   border: none;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-.link-button.twitch i {
-  color: darkred; /* Darkened red */
-}
-
-.link-button.discord i {
-  color: darkred; /* Darkened red */
-}
-
-.link-button.youtube i {
-  color: darkred; /* Darkened red */
-}
-
-.link-button.spotify i {
-  color: darkred; /* Darkened red */
-}
-
-.link-button.github i {
-  color: darkred; /* Darkened red */
-}
-
-.link-button.reddit i {
-  color: darkred; /* Darkened red */
-}
-
-.link-button.blocktanks i {
-  color: darkred; /* Darkened red */
-}
-
-.link-button.discord {
-  color: #ffffff;
-  border: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-.link-button.discord:hover {
-  background: none;
-}
-
-/* Steam Button */
-.link-button.steam {
-  color: #ffffff;
-  border: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-.link-button.steam:hover {
-  background: none;
-}
-
-/* YouTube Button */
-.link-button.youtube {
-  color: #ffffff;
-  border: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-.link-button.youtube:hover {
-  background: none;
-}
-
-/* Spotify Button */
-.link-button.spotify {
-  color: #ffffff;
-  border: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-.link-button.spotify:hover {
-  background: none;
-}
-
-/* GitHub Button */
-.link-button.github {
-  color: #ffffff;
-  border: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-.link-button.github:hover {
-  background: none;
-}
-
-/* Reddit Button */
-.link-button.reddit {
-  color: #ffffff;
-  border: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-.link-button.reddit:hover {
-  background: none;
-}
-
-/* BlockTanks Button */
-.link-button.blocktanks {
-  color: #ffffff;
-  border: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-.link-button.blocktanks:hover {
-  background: none;
-}
-
-/* Icon Colors */
-.link-button.epicgames i {
-  color: #6b6b6b; /* Epic Games dark gray */
-}
-
-.link-button.labymod i {
-  color: #ffcc00; /* LabyMod yellow */
-}
-
-.link-button.linktree i {
-  color: #39e09b; /* Linktree green */
-}
-
-.link-button.wakatime i {
-  color: #563d7c; /* WakaTime purple */
-}
-
-.link-button.aniworld i {
-  color: #ff6f61; /* AniWorld coral */
-}
-
-.link-button.lastfm i {
-  color: #d51007; /* Last.fm red */
-}
-
-.link-button.nexusmods i {
-  color: #f88c00; /* Nexus Mods orange */
-}
-
-.link-button.duolingo i {
-  color: #58cc02; /* Duolingo green */
-}
-
-.link-button.crazygames i {
-  color: #7c19b6; /* CrazyGames blue */
-}
-
-.link-button.epicgames i {
-  color: #6b6b6b;
-}
-
-/* Newgrounds Button */
-.link-button.newgrounds i {
-  color: #ffae00; /* Newgrounds yellow */
-}
 
 .banner-image {
   width: 100%;
@@ -604,6 +482,7 @@ a:hover {
   justify-content: center;
   gap: 10px;
   margin-top: 20px;
+  margin: 20px;
 }
 
 .nav-button {
@@ -877,9 +756,9 @@ br {
   border-radius: 10px;
   margin: 0; /* Remove unnecessary margin */
 }
-
 h3, h2, h1 {
-  color: darkred; /* Darkened red */
+  color: #449B3A; /* Darkened green */
+  -webkit-text-stroke: 1px #7a7a7a; /* Light gray for good contrast */
 }
 
 .what h2 {
@@ -902,6 +781,7 @@ h3, h2, h1 {
   position: relative;
   bottom: 0;
   width: 100%;
+  box-sizing: border-box; /* Include padding and borders in width */
   transition: background 0.3s ease;
   margin-top: 20px; /* Add space above the footer */
   padding: 20px; /* Add padding for better spacing */
@@ -1092,7 +972,7 @@ input:checked + .slider:before {
 }
 
 .sidebar-nav li a:hover {
-  color: darkred; /* Highlight color on hover */
+  color: #449B3A; /* Highlight color on hover */
 }
 
 /* Layout styles */
@@ -1162,13 +1042,18 @@ input:checked + .slider:before {
 .plan-link h3 {
   margin: 0 0 10px;
   font-size: 1.5rem;
-  color: darkred;
+  color: #449B3A;
 }
 
 .plan-link p {
   margin: 0;
   font-size: 1rem;
   color: #e4e4e7;
+}
+
+.plan-details {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .note {
@@ -1207,4 +1092,125 @@ input:checked + .slider:before {
   font-size: 1.2rem;
   color: #e4e4e7; /* Light text color for the message */
   margin: 0;
+}
+
+/* Centered Content Styles */
+.centered-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 80vh; /* Ensure content is vertically centered */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Ensure forms and sections are centered */
+.styled-form {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.form-row label {
+  flex: 1;
+  text-align: left;
+  font-weight: bold;
+  color: #e4e4e7;
+}
+
+.form-row input,
+.form-row select {
+  flex: 2;
+  max-width: 300px;
+}
+
+/* Ensure custom containers align properly */
+#custom-capacity-container,
+#custom-ram-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#server-list {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.server-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.server-item {
+  background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #e4e4e7;
+}
+
+.server-item h3 {
+  margin: 0;
+  color: #449B3A;
+}
+
+.server-item p {
+  margin: 5px 0;
+}
+
+.server-item select,
+.server-item input {
+  width: 100%;
+  max-width: 300px;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #4a4a4a;
+  border-radius: 8px;
+  background-color: #2a2a2a;
+  color: #e4e4e7;
+}
+
+.server-item .edit-button,
+.server-item .delete-button {
+  background: #449B3A;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.server-item .edit-button:hover,
+.server-item .delete-button:hover {
+  background: maroon;
+}
+
+.server-item .monthly-cost {
+  font-weight: bold;
+  color: #e4e4e7;
+}
+.home-button img {
+  width: 150px;
+  height: auto;
 }

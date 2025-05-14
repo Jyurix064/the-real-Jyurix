@@ -15,6 +15,27 @@ function init() {
   setupRamPresetDropdown();
 }
 
+// Function to validate input values and update red text
+function validateInputs(capacity, ram, capacityElement, ramElement) {
+  let isValid = true;
+
+  if (capacity > 1000) {
+    capacityElement.nextElementSibling.style.display = "inline"; // Show red text
+    isValid = false;
+  } else {
+    capacityElement.nextElementSibling.style.display = "none"; // Hide red text
+  }
+
+  if (ram > 64) {
+    ramElement.nextElementSibling.style.display = "inline"; // Show red text
+    isValid = false;
+  } else {
+    ramElement.nextElementSibling.style.display = "none"; // Hide red text
+  }
+
+  return isValid;
+}
+
 // Function to handle server creation
 function createServer(event) {
   event.preventDefault(); // Prevent form submission
@@ -27,17 +48,24 @@ function createServer(event) {
 
   // Determine the capacity based on the selected preset or custom input
   const playerPreset = document.getElementById("player-preset").value;
+  const customCapacityInput = document.getElementById("custom-capacity");
   const serverCapacity =
     playerPreset === "custom"
-      ? parseInt(document.getElementById("custom-capacity").value, 10)
+      ? parseInt(customCapacityInput.value, 10)
       : parseInt(playerPreset, 10);
 
   // Determine the RAM based on the selected preset or custom input
   const ramPreset = document.getElementById("ram-preset").value;
+  const customRamInput = document.getElementById("custom-ram");
   const serverRam =
     ramPreset === "custom"
-      ? parseInt(document.getElementById("custom-ram").value, 10)
+      ? parseInt(customRamInput.value, 10)
       : parseInt(ramPreset, 10);
+
+  // Validate inputs
+  if (!validateInputs(serverCapacity, serverRam, customCapacityInput, customRamInput)) {
+    return;
+  }
 
   // Calculate the monthly price based on the selected plan, capacity, and RAM
   const monthlyPrice = calculateCost(serverPlan, serverCapacity, serverRam);
@@ -66,7 +94,6 @@ function createServer(event) {
   document.getElementById("calculated-cost").textContent = "0.00€"; // Reset live cost display
   document.getElementById("custom-capacity-container").style.display = "none"; // Hide custom input
   document.getElementById("custom-ram-container").style.display = "none"; // Hide custom RAM input
-  alert(`Server created successfully! Monthly Price: ${monthlyPrice.toFixed(2)}€`);
 }
 
 // Function to calculate the cost based on the plan, capacity, and RAM
@@ -96,6 +123,10 @@ function setupLiveCostCalculation() {
       ramPreset.value === "custom"
         ? parseInt(customRamInput.value, 10) || 0
         : parseInt(ramPreset.value, 10) || 0;
+
+    // Validate inputs and update red text
+    validateInputs(capacity, ram, customCapacityInput, customRamInput);
+
     const cost = calculateCost(selectedPlan, capacity, ram);
     costDisplay.textContent = `${cost.toFixed(2)}€`;
   }
@@ -158,9 +189,9 @@ function setupRamPresetDropdown() {
   ramPreset.appendChild(customOption);
 }
 
-// Function to display stored servers
+// Function to display stored servers with live price updates
 function displayStoredServers() {
-  const serverListContainer = document.getElementById("server-list");
+  const serverListContainer = document.getElementById("server-list-container");
   if (!serverListContainer) return;
 
   // Clear existing content
@@ -178,17 +209,97 @@ function displayStoredServers() {
   servers.forEach((server, index) => {
     const serverItem = document.createElement("div");
     serverItem.className = "server-item";
+
     serverItem.innerHTML = `
-      <h3>${server.name}</h3>
-      <p>Type: ${server.type}</p>
-      <p>Region: ${server.region}</p>
-      <p>Capacity: ${server.capacity} players</p>
-      <p>RAM: ${server.ram} GB</p>
-      <p>Plan: ${capitalize(server.plan)} - ${server.price}€/Month</p>
-      <button onclick="deleteServer(${index})" class="delete-button">Delete</button>
+      <h3>Server: <input type="text" value="${server.name}" class="server-name-input" /></h3>
+      <p>Type: 
+        <select class="server-type-select">
+          <option value="minecraft" ${server.type === "minecraft" ? "selected" : ""}>Minecraft</option>
+          <option value="rust" ${server.type === "rust" ? "selected" : ""}>Rust</option>
+          <option value="ark" ${server.type === "ark" ? "selected" : ""}>ARK</option>
+          <option value="subnautica" ${server.type === "subnautica" ? "selected" : ""}>Subnautica</option>
+          <option value="counter-strike" ${server.type === "counter-strike" ? "selected" : ""}>Counter Strike</option>
+        </select>
+      </p>
+      <p>Region: 
+        <select class="server-region-select">
+          <option value="us-east" ${server.region === "us-east" ? "selected" : ""}>US East</option>
+          <option value="us-west" ${server.region === "us-west" ? "selected" : ""}>US West</option>
+          <option value="europe" ${server.region === "europe" ? "selected" : ""}>Europe</option>
+          <option value="asia" ${server.region === "asia" ? "selected" : ""}>Asia</option>
+        </select>
+      </p>
+      <p>Capacity: 
+        <input type="number" value="${server.capacity}" class="server-capacity-input" min="1" max="1000" /> players
+        <span style="color: red; font-size: 0.9rem; display: none;">No more than 1000</span>
+      </p>
+      <p>RAM: 
+        <input type="number" value="${server.ram}" class="server-ram-input" min="1" max="64" /> GB
+        <span style="color: red; font-size: 0.9rem; display: none;">No more than 64 GB</span>
+      </p>
+      <p>Plan: <strong>${capitalize(server.plan)}</strong></p>
+      <p class="monthly-cost">Monthly Cost: <span>${server.price}€</span></p>
+      <button class="edit-button" onclick="updateServer(${index})">Save Changes</button>
+      <button class="delete-button" onclick="deleteServer(${index})">Delete</button>
     `;
+
+    // Add event listeners for live price updates
+    const capacityInput = serverItem.querySelector(".server-capacity-input");
+    const ramInput = serverItem.querySelector(".server-ram-input");
+    const monthlyCostDisplay = serverItem.querySelector(".monthly-cost span");
+
+    const updateLiveCost = () => {
+      const updatedCapacity = parseInt(capacityInput.value, 10) || 0;
+      const updatedRam = parseInt(ramInput.value, 10) || 0;
+
+      // Validate inputs and update red text
+      validateInputs(updatedCapacity, updatedRam, capacityInput, ramInput);
+
+      const updatedPrice = calculateCost(server.plan, updatedCapacity, updatedRam);
+      monthlyCostDisplay.textContent = `${updatedPrice.toFixed(2)}€`;
+    };
+
+    capacityInput.addEventListener("input", updateLiveCost);
+    ramInput.addEventListener("input", updateLiveCost);
+
     serverListContainer.appendChild(serverItem);
   });
+}
+
+// Function to update a server's details
+function updateServer(index) {
+  const servers = JSON.parse(localStorage.getItem("servers")) || [];
+  const serverItem = document.querySelectorAll(".server-item")[index];
+
+  const updatedName = serverItem.querySelector(".server-name-input").value;
+  const updatedType = serverItem.querySelector(".server-type-select").value;
+  const updatedRegion = serverItem.querySelector(".server-region-select").value;
+  const updatedCapacity = parseInt(serverItem.querySelector(".server-capacity-input").value, 10);
+  const updatedRam = parseInt(serverItem.querySelector(".server-ram-input").value, 10);
+
+  // Validate inputs and update red text
+  const capacityInput = serverItem.querySelector(".server-capacity-input");
+  const ramInput = serverItem.querySelector(".server-ram-input");
+  if (!validateInputs(updatedCapacity, updatedRam, capacityInput, ramInput)) {
+    return;
+  }
+
+  // Update the server details
+  servers[index].name = updatedName;
+  servers[index].type = updatedType;
+  servers[index].region = updatedRegion;
+  servers[index].capacity = updatedCapacity;
+  servers[index].ram = updatedRam;
+
+  // Recalculate the monthly cost
+  const updatedPrice = calculateCost(servers[index].plan, updatedCapacity, updatedRam);
+  servers[index].price = updatedPrice.toFixed(2);
+
+  // Save the updated servers to local storage
+  localStorage.setItem("servers", JSON.stringify(servers));
+
+  // Refresh the server list
+  displayStoredServers();
 }
 
 // Function to delete a server

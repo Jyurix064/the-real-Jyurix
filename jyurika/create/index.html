@@ -1,139 +1,123 @@
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>JYURIKA - Create Your Server</title>
-        <link rel="stylesheet" href="../../assets/style.css" />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-        />
-        <link rel="icon" href="../../assets/JY.png" type="image/png" />
-        <script src="../../assets/script.js" defer></script>
-    </head>
-    <body>
-        <header class="header">
-            <h1 class="title-with-icon">
-                <span class="title-text">JYURIKA</span>
-            </h1>
-            <p>Your gateway to creating servers!</p>
-        </header>
-        <main class="main-content">
-            <section class="what">
-                <h2>Create Your Server</h2>
-                <div class="plan-details">
-                    <h3>Our Plans</h3>
-                    <ul>
-                        <li><strong>Basic Plan:</strong> 4.50€/Month - Ideal for small servers (2GB RAM)</li>
-                        <li><strong>Standard Plan:</strong> 9.00€/Month - Perfect for medium servers (4GB RAM)</li>
-                        <li><strong>Premium Plan:</strong> 18.00€/Month - For large servers (8GB RAM)</li>
-                        <li><strong>Ultimate Plan:</strong> 25.00€/Month - High performance (16GB RAM)</li>
-                        <li><strong>Enterprise Plan:</strong> 50.00€/Month - For enterprises (32GB RAM)</li>
-                    </ul>
-                </div>
-                <form class="styled-form">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JYURIKA - Create Your Server</title>
+    <link rel="stylesheet" href="../../assets/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="icon" href="../../assets/JY.png" type="image/png" />
+    <script src="../../assets/script.js" defer></script>
+</head>
+
+<body>
+    <header class="header">
+        <h1 class="title-with-icon">
+            <span class="title-text">JYURIKA</span>
+        </h1>
+        <p>Your gateway to creating servers!</p>
+    </header>
+    <main class="main-content centered-content">
+        <section class="what">
+            <h2>Create Your Server</h2>
+            <div class="plan-details">
+                <h3>Our Plans</h3>
+                <ul>
+                    <li><strong>Basic Plan:</strong> 4.50€/Month - Ideal for small servers (2GB RAM)</li>
+                    <li><strong>Standard Plan:</strong> 9.00€/Month - Perfect for medium servers (4GB RAM)</li>
+                    <li><strong>Premium Plan:</strong> 18.00€/Month - For large servers (8GB RAM)</li>
+                    <li><strong>Ultimate Plan:</strong> 25.00€/Month - High performance (16GB RAM)</li>
+                    <li><strong>Enterprise Plan:</strong> 50.00€/Month - For enterprises (32GB RAM)</li>
+                </ul>
+            </div>
+            <form class="styled-form">
+                <div class="form-row">
                     <label for="server-name">Server Name:</label>
-                    <input
-                        type="text"
-                        id="server-name"
-                        name="server-name"
-                        class="styled-input"
-                        placeholder="Enter your server name"
-                        required
-                    />
+                    <input type="text" id="server-name" name="server-name" class="styled-input"
+                        placeholder="Enter your server name" required />
+                </div>
 
+                <div class="form-row">
                     <label for="server-type">Server Type:</label>
-                    <select
-                        id="server-type"
-                        name="server-type"
-                        class="styled-select"
-                        required
-                    >
-                        <option value="gaming">Gaming</option>
-                        <option value="development">Development</option>
-                        <option value="personal">Personal</option>
+                    <select id="server-type" name="server-type" class="styled-select" required>
+                        <option value="minecraft">Minecraft</option>
+                        <option value="rust">Rust</option>
+                        <option value="ark">ARK</option>
+                        <option value="subnautica">Subnautica</option>
+                        <option value="counter-strike">Counter Strike</option>
                     </select>
+                </div>
 
+                <div class="form-row">
                     <label for="server-region">Server Region:</label>
-                    <select
-                        id="server-region"
-                        name="server-region"
-                        class="styled-select"
-                        required
-                    >
+                    <select id="server-region" name="server-region" class="styled-select" required>
                         <option value="us-east">US East</option>
                         <option value="us-west">US West</option>
                         <option value="europe">Europe</option>
                         <option value="asia">Asia</option>
                     </select>
+                </div>
 
+                <div class="form-row">
                     <label for="player-preset">Server Capacity (Max Players):</label>
                     <select id="player-preset" name="player-preset" class="styled-select" required>
                         <!-- Options will be dynamically added -->
                     </select>
+                </div>
 
-                    <div id="custom-capacity-container" style="display: none;">
-                        <label for="custom-capacity">Custom Capacity:</label>
-                        <input
-                            type="number"
-                            id="custom-capacity"
-                            name="custom-capacity"
-                            class="styled-input"
-                            placeholder="Enter custom capacity"
-                            min="1"
-                            max="1000"
-                        />
-                    </div>
+                <div id="custom-capacity-container" class="form-row" style="display: none;">
+                    <label for="custom-capacity">Custom Capacity:</label>
+                    <input type="number" id="custom-capacity" name="custom-capacity" class="styled-input"
+                        placeholder="Enter custom capacity" min="1" max="1000" />
+                    <span style="color: red; font-size: 0.9rem; display: block; margin-top: 5px;">No more than 1000</span>
+                </div>
 
+                <div class="form-row">
                     <label for="ram-preset">Server RAM:</label>
                     <select id="ram-preset" name="ram-preset" class="styled-select" required>
                         <!-- Options will be dynamically added -->
                     </select>
+                </div>
 
-                    <div id="custom-ram-container" style="display: none;">
-                        <label for="custom-ram">Custom RAM:</label>
-                        <input
-                            type="number"
-                            id="custom-ram"
-                            name="custom-ram"
-                            class="styled-input"
-                            placeholder="Enter custom RAM (GB)"
-                            min="1"
-                            max="64"
-                        />
-                    </div>
+                <div id="custom-ram-container" class="form-row" style="display: none;">
+                    <label for="custom-ram">Custom RAM:</label>
+                    <input type="number" id="custom-ram" name="custom-ram" class="styled-input"
+                        placeholder="Enter custom RAM (GB)" min="1" max="64" />
+                    <span style="color: red; font-size: 0.9rem; display: block; margin-top: 5px;">No more than 64 GB</span>
+                </div>
 
+                <div class="form-row">
                     <label for="server-plan">Server Plan:</label>
-                    <select
-                        id="server-plan"
-                        name="server-plan"
-                        class="styled-select"
-                        required
-                    >
+                    <select id="server-plan" name="server-plan" class="styled-select" required>
                         <option value="basic">Basic Plan - 4.50€/Month</option>
                         <option value="standard">Standard Plan - 9.00€/Month</option>
                         <option value="premium">Premium Plan - 18.00€/Month</option>
                         <option value="ultimate">Ultimate Plan - 25.00€/Month</option>
                         <option value="enterprise">Enterprise Plan - 50.00€/Month</option>
                     </select>
+                </div>
 
-                    <p>
-                        <strong>Estimated Monthly Cost:</strong>
-                        <span id="calculated-cost">0.00€</span>
-                    </p>
+                <p>
+                    <strong>Estimated Monthly Cost:</strong>
+                    <span id="calculated-cost">0.00€</span>
+                </p>
 
-                    <button type="submit" class="button">
-                        <span class="button-text">Create Server</span>
-                    </button>
-                </form>
-            </section>
-            <section id="server-list">
-                <h2>Your Servers</h2>
-                <!-- Stored servers will be displayed here -->
-            </section>
-        </main>
-        <footer class="footer">
-            <p>Made with <i class="fas fa-heart"></i> by the JYURIKA Team</p>
-        </footer>
-    </body>
+                <button type="submit" class="button">
+                    <span class="button-text">Create Server</span>
+                    <img src="../../assets/BUY.png" alt="JYURIKA Logo" class="button-image" />
+                </button>
+            </form>
+        </section>
+        <section id="server-list">
+            <h2>Your Servers</h2>
+            <div id="server-list-container" class="server-list-container">
+                <!-- Stored servers will be dynamically displayed here -->
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>Made with <i class="fas fa-heart"></i> by the JYURIKA Team</p>
+    </footer>
+</body>
+
 </html>
