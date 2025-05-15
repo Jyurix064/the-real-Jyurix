@@ -79,7 +79,7 @@ footer {
   animation: pulse-dark-green 2s infinite alternate ease-in-out; /* Updated animation */
   box-shadow: 0 0 15px rgb(0, 61, 0), 0 0 15px #449B3A; /* Darkened red */
   border: 2px solid #449B3A; /* Darkened red */
-  position: fixed;
+  position: relative;
 }
 
 @keyframes pulse-dark-green {
@@ -779,7 +779,7 @@ h3, h2, h1 {
   color: white;
   text-align: center;
   padding: 10px 0;
-  position: relative;
+  position: fixed;
   bottom: 0;
   width: 100%;
   box-sizing: border-box; /* Include padding and borders in width */
