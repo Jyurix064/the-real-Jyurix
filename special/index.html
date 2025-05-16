@@ -80,9 +80,9 @@
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const images = ["../assets/Dude1.png", "../assets/Dude2.png", "../assets/frog.gif", "../assets/sexy.gif",
-                "../assets/Wicht.gif", "../assets/Wichtel.jpg", "../assets/apfel.jpg", "../assets/gru.webp",
-                "../assets/nerd.jpg", "../assets/shii.jpg"
+            const images = ["../assets/meme/Dude1.png", "../assets/meme/Dude2.png", "../assets/meme/frog.gif", "../assets/meme/sexy.gif",
+                "../assets/meme/Wicht.gif", "../assets/meme/Wichtel.jpg", "../assets/meme/apfel.jpg", "../assets/meme/gru.webp",
+                "../assets/meme/nerd.jpg", "../assets/meme/shii.jpg"
             ];
             const profileImage = document.querySelector(".birthday-image");
 
@@ -97,14 +97,20 @@
 </head>
 
 <body>
+    <header>
+        <a href="/" class="close-button" title="Close">
+            <i class="fas fa-times" style="color: red;"></i>
+        </a>
+    </header>
     <div class="birthday-container">
         <h1 class="birthday-title">🎂 Alles Gute zum Geburtstag, Wichtel! 🎉</h1>
-        <img src="../assets/Wicht.png" alt="Wichtel" class="birthday-image" draggable="false" />
+        <img src="../assets/meme/Wicht.gif" alt="Wichtel" class="birthday-image" draggable="false" />
         <p class="birthday-message">
             Lieber Wichtel, <br />
             Ich wünsche dir alles Gute zu deinem Geburtstag! 🎈 <br />
             Möge dein Tag voller Freude, Spaß und unvergesslicher Momente sein. <br />
-            Deine Familie und Freunde denken an dich und hoffen, dass du über 1,50m wächst und bald den Stimmenbruch bekommst! 😄
+            Deine Familie und Freunde denken an dich und hoffen, dass du über 1,50m wächst und bald den Stimmenbruch
+            bekommst! 😄
         </p>
         <div class="minecraft-icons">
             <span>🪓</span>
@@ -115,7 +121,8 @@
             <span>💎</span>
         </div>
         <p class="birthday-message">
-            Möge dein Inventar immer voll Diamanten sein 💎 und deine Creeper immer explodieren, bevor sie dich erreichen! 💥
+            Möge dein Inventar immer voll Diamanten sein 💎 und deine Creeper immer explodieren, bevor sie dich
+            erreichen! 💥
         </p>
     </div>
     <footer class="footer">

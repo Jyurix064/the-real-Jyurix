@@ -1,11 +1,12 @@
 // Pricing details for each plan
 const pricing = {
-  basic: { base: 4.50, ram: 2 }, // 2GB RAM
-  standard: { base: 9.00, ram: 4 }, // 4GB RAM
-  premium: { base: 18.00, ram: 8 }, // 8GB RAM
-  ultimate: { base: 25.00, ram: 16 }, // 16GB RAM
-  enterprise: { base: 50.00, ram: 32 }, // 32GB RAM
+  basic: { base: 4.5, ram: 2 }, // 2GB RAM
+  standard: { base: 9.0, ram: 4 }, // 4GB RAM
+  premium: { base: 18.0, ram: 8 }, // 8GB RAM
+  ultimate: { base: 25.0, ram: 16 }, // 16GB RAM
+  enterprise: { base: 50.0, ram: 32 }, // 32GB RAM
 };
+
 
 // Function to initialize the application
 function init() {
@@ -63,7 +64,14 @@ function createServer(event) {
       : parseInt(ramPreset, 10);
 
   // Validate inputs
-  if (!validateInputs(serverCapacity, serverRam, customCapacityInput, customRamInput)) {
+  if (
+    !validateInputs(
+      serverCapacity,
+      serverRam,
+      customCapacityInput,
+      customRamInput
+    )
+  ) {
     return;
   }
 
@@ -99,8 +107,8 @@ function createServer(event) {
 // Function to calculate the cost based on the plan, capacity, and RAM
 function calculateCost(plan, capacity, ram) {
   const basePrice = pricing[plan].base;
-  const ramCost = (ram - pricing[plan].ram) * 0.50; // 0.50€ per GB of additional RAM
-  const capacityCost = capacity * 0.10; // 0.10€ per player
+  const ramCost = (ram - pricing[plan].ram) * 0.5; // 0.50€ per GB of additional RAM
+  const capacityCost = capacity * 0.1; // 0.10€ per player
   return basePrice + Math.max(ramCost, 0) + capacityCost; // Ensure no negative RAM cost
 }
 
@@ -112,6 +120,18 @@ function setupLiveCostCalculation() {
   const ramPreset = document.getElementById("ram-preset");
   const customRamInput = document.getElementById("custom-ram");
   const costDisplay = document.getElementById("calculated-cost");
+
+  // If any required element is missing, do not proceed (prevents errors on non-server pages)
+  if (
+    !planSelect ||
+    !playerPreset ||
+    !customCapacityInput ||
+    !ramPreset ||
+    !customRamInput ||
+    !costDisplay
+  ) {
+    return;
+  }
 
   function updateCost() {
     const selectedPlan = planSelect.value;
@@ -133,7 +153,9 @@ function setupLiveCostCalculation() {
 
   planSelect.addEventListener("change", updateCost);
   playerPreset.addEventListener("change", () => {
-    const customCapacityContainer = document.getElementById("custom-capacity-container");
+    const customCapacityContainer = document.getElementById(
+      "custom-capacity-container"
+    );
     if (playerPreset.value === "custom") {
       customCapacityContainer.style.display = "block";
     } else {
@@ -211,30 +233,54 @@ function displayStoredServers() {
     serverItem.className = "server-item";
 
     serverItem.innerHTML = `
-      <h3>Server: <input type="text" value="${server.name}" class="server-name-input" /></h3>
+      <h3>Server: <input type="text" value="${
+        server.name
+      }" class="server-name-input" /></h3>
       <p>Type: 
         <select class="server-type-select">
-          <option value="minecraft" ${server.type === "minecraft" ? "selected" : ""}>Minecraft</option>
-          <option value="rust" ${server.type === "rust" ? "selected" : ""}>Rust</option>
-          <option value="ark" ${server.type === "ark" ? "selected" : ""}>ARK</option>
-          <option value="subnautica" ${server.type === "subnautica" ? "selected" : ""}>Subnautica</option>
-          <option value="counter-strike" ${server.type === "counter-strike" ? "selected" : ""}>Counter Strike</option>
+          <option value="minecraft" ${
+            server.type === "minecraft" ? "selected" : ""
+          }>Minecraft</option>
+          <option value="rust" ${
+            server.type === "rust" ? "selected" : ""
+          }>Rust</option>
+          <option value="ark" ${
+            server.type === "ark" ? "selected" : ""
+          }>ARK</option>
+          <option value="subnautica" ${
+            server.type === "subnautica" ? "selected" : ""
+          }>Subnautica</option>
+          <option value="counter-strike" ${
+            server.type === "counter-strike" ? "selected" : ""
+          }>Counter Strike</option>
         </select>
       </p>
       <p>Region: 
         <select class="server-region-select">
-          <option value="us-east" ${server.region === "us-east" ? "selected" : ""}>US East</option>
-          <option value="us-west" ${server.region === "us-west" ? "selected" : ""}>US West</option>
-          <option value="europe" ${server.region === "europe" ? "selected" : ""}>Europe</option>
-          <option value="asia" ${server.region === "asia" ? "selected" : ""}>Asia</option>
+          <option value="us-east" ${
+            server.region === "us-east" ? "selected" : ""
+          }>US East</option>
+          <option value="us-west" ${
+            server.region === "us-west" ? "selected" : ""
+          }>US West</option>
+          <option value="europe" ${
+            server.region === "europe" ? "selected" : ""
+          }>Europe</option>
+          <option value="asia" ${
+            server.region === "asia" ? "selected" : ""
+          }>Asia</option>
         </select>
       </p>
       <p>Capacity: 
-        <input type="number" value="${server.capacity}" class="server-capacity-input" min="1" max="1000" /> players
+        <input type="number" value="${
+          server.capacity
+        }" class="server-capacity-input" min="1" max="1000" /> players
         <span style="color: red; font-size: 0.9rem; display: none;">No more than 1000</span>
       </p>
       <p>RAM: 
-        <input type="number" value="${server.ram}" class="server-ram-input" min="1" max="64" /> GB
+        <input type="number" value="${
+          server.ram
+        }" class="server-ram-input" min="1" max="64" /> GB
         <span style="color: red; font-size: 0.9rem; display: none;">No more than 64 GB</span>
       </p>
       <p>Plan: <strong>${capitalize(server.plan)}</strong></p>
@@ -255,7 +301,11 @@ function displayStoredServers() {
       // Validate inputs and update red text
       validateInputs(updatedCapacity, updatedRam, capacityInput, ramInput);
 
-      const updatedPrice = calculateCost(server.plan, updatedCapacity, updatedRam);
+      const updatedPrice = calculateCost(
+        server.plan,
+        updatedCapacity,
+        updatedRam
+      );
       monthlyCostDisplay.textContent = `${updatedPrice.toFixed(2)}€`;
     };
 
@@ -274,8 +324,14 @@ function updateServer(index) {
   const updatedName = serverItem.querySelector(".server-name-input").value;
   const updatedType = serverItem.querySelector(".server-type-select").value;
   const updatedRegion = serverItem.querySelector(".server-region-select").value;
-  const updatedCapacity = parseInt(serverItem.querySelector(".server-capacity-input").value, 10);
-  const updatedRam = parseInt(serverItem.querySelector(".server-ram-input").value, 10);
+  const updatedCapacity = parseInt(
+    serverItem.querySelector(".server-capacity-input").value,
+    10
+  );
+  const updatedRam = parseInt(
+    serverItem.querySelector(".server-ram-input").value,
+    10
+  );
 
   // Validate inputs and update red text
   const capacityInput = serverItem.querySelector(".server-capacity-input");
@@ -292,7 +348,11 @@ function updateServer(index) {
   servers[index].ram = updatedRam;
 
   // Recalculate the monthly cost
-  const updatedPrice = calculateCost(servers[index].plan, updatedCapacity, updatedRam);
+  const updatedPrice = calculateCost(
+    servers[index].plan,
+    updatedCapacity,
+    updatedRam
+  );
   servers[index].price = updatedPrice.toFixed(2);
 
   // Save the updated servers to local storage
@@ -315,11 +375,321 @@ function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+// Helper to get settings object from localStorage
+function getSettings() {
+  let settings = {};
+  try {
+    settings = JSON.parse(localStorage.getItem('settings')) || {};
+  } catch (e) {
+    settings = {};
+  }
+  return settings;
+}
+
+// Helper to save settings object to localStorage
+function saveSettings(settings) {
+  localStorage.setItem('settings', JSON.stringify(settings));
+}
+
 // Attach event listener to the form
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector(".styled-form");
   if (form) {
     form.addEventListener("submit", createServer);
+    init(); // Only call init if the form exists (server page)
+  } else {
+    // On pages like linktree, only apply theme if stored
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme && themes[storedTheme]) {
+      applyTheme(storedTheme);
+    }
   }
-  init();
+});
+
+const themes = {
+  green:   { main: "#449B3A"},
+  blue:    { main: "#00357F"},
+  red:     { main: "#E6141C"},
+  yellow:  { main: "#FFF04F"},
+  purple:  { main: "#4A1FA5"},
+  orange:  { main: "#FF401E"},
+  pink:    { main: "#D63384"},
+  cyan:    { main: "#00BFFF"},
+  brown:   { main: "#8B4513"},
+  gray:    { main: "#808080"},
+  black:   { main: "#000000"},
+  white:   { main: "#FFFFFF"},
+  // Add more themes as needed
+};
+function applyTheme(name) {
+  let settings = getSettings();
+  if (!name) {
+    name = settings.theme || 'cyan';
+    if (!name) return; // No theme to apply
+  }
+  const theme = themes[name];
+  if (!theme) return console.warn("Unknown theme:", name);
+
+  document.documentElement.style.setProperty('--main', theme.main);
+  settings.theme = name;
+  saveSettings(settings);
+
+  // Update Jyurika and Linktree logos if present on the page
+  var jyurikaLogo = document.querySelector('a[href*="jyurika"] .button-image, img[alt="Jyurika"]');
+  if (jyurikaLogo && theme.jyurikaLogo) {
+    jyurikaLogo.src = theme.jyurikaLogo;
+  }
+  var linktreeLogo = document.querySelector('a[href*="linktree"] .button-image, img[alt="Linktree"]');
+  if (linktreeLogo && theme.linktreeLogo) {
+    linktreeLogo.src = theme.linktreeLogo;
+  }
+}
+
+// Home page: update all images based on theme
+function updateHomeLogos(themeName) {
+  if (!themeName) themeName = localStorage.getItem('theme') || 'cyan';
+
+  // Jyurika logo
+  var jyurikaLogo = document.getElementById('jyurika-logo');
+  if (jyurikaLogo) {
+    var jyurikaPath = `../assets/${themeName}/Jyurika_Trans.png`;
+    var jyurikaFallback = `../assets/gray/Jyurika_Trans.png`;
+    var jyurikaDepri = `../assets/gray/JyurixDepri.png`;
+    function setJyuLogo(paths) {
+      if (!paths.length) return;
+      var path = paths.shift();
+      var img = new window.Image();
+      img.onload = function() {
+        jyurikaLogo.src = path;
+      };
+      img.onerror = function() {
+        setJyuLogo(paths);
+      };
+      img.src = path;
+    }
+    setJyuLogo([jyurikaPath, jyurikaFallback, jyurikaDepri]);
+    jyurikaLogo.alt = "Jyurika";
+  }
+  // Linktree logo
+  var linktreeLogo = document.getElementById('linktree-logo');
+  if (linktreeLogo) {
+    var linktreePath = `../assets/${themeName}/Linktree_Trans.png`;
+    var linktreeFallback = `../assets/gray/Linktree_Trans.png`;
+    var linktreeDepri = `../assets/gray/JyurixDepri.png`;
+    function setLinktreeLogo(paths) {
+      if (!paths.length) return;
+      var path = paths.shift();
+      var img = new window.Image();
+      img.onload = function() {
+        linktreeLogo.src = path;
+      };
+      img.onerror = function() {
+        setLinktreeLogo(paths);
+      };
+      img.src = path;
+    }
+    setLinktreeLogo([linktreePath, linktreeFallback, linktreeDepri]);
+  }
+  // Main logo (Logo.png/Logo1.png for pink sheep)
+  var mainLogo = document.getElementById('main-logo');
+  if (mainLogo) {
+    if (themeName === "pink" && Math.floor(Math.random() * 100) === 0) {
+      mainLogo.src = `../assets/pink/Logo1.png`;
+      mainLogo.alt = "RARE Logo (Pink Sheep!)";
+    } else {
+      var mainLogoPath = `../assets/${themeName}/Logo.png`;
+      var mainLogoFallback = `../assets/gray/Logo.png`;
+      var mainLogoDepri = `../assets/gray/JyurixDepri.png`;
+      function setMainLogo(paths) {
+        if (!paths.length) return;
+        var path = paths.shift();
+        var img = new window.Image();
+        img.onload = function() {
+          mainLogo.src = path;
+        };
+        img.onerror = function() {
+          setMainLogo(paths);
+        };
+        img.src = path;
+      }
+      setMainLogo([mainLogoPath, mainLogoFallback, mainLogoDepri]);
+      mainLogo.alt = "Logo";
+    }
+  }
+  // Add more themed images here as needed, following the same pattern:
+  // var anotherImg = document.getElementById('another-img-id');
+  // if (anotherImg) { anotherImg.src = `../assets/${themeName}/AnotherImage.png`; }
+}
+
+// Initial logo update on page load (for home)
+document.addEventListener("DOMContentLoaded", function() {
+  let settings = getSettings();
+  if (
+    document.getElementById('jyurika-logo') ||
+    document.getElementById('linktree-logo') ||
+    document.getElementById('main-logo')
+    // add more IDs here if you add more themed images
+  ) {
+    var theme = settings.theme || 'cyan';
+    updateHomeLogos(theme);
+  }
+});
+
+// Apply theme on page load if stored in settings
+document.addEventListener("DOMContentLoaded", () => {
+  let settings = getSettings();
+  if (settings.theme && themes[settings.theme]) {
+    applyTheme(settings.theme);
+  }
+});
+
+// Settings page theme dropdown logic (no duplicates)
+document.addEventListener("DOMContentLoaded", () => {
+  // Settings page theme dropdown logic
+  const themeSelect = document.getElementById('theme-select');
+  const themePreview = document.getElementById('theme-preview');
+  if (themeSelect && themePreview && typeof themes === "object") {
+    // Populate dropdown
+    themeSelect.innerHTML = "";
+    for (const key in themes) {
+      const opt = document.createElement('option');
+      opt.value = key;
+      opt.textContent = key.charAt(0).toUpperCase() + key.slice(1);
+      themeSelect.appendChild(opt);
+    }
+
+    function setPreviewColor(themeName) {
+      if (themes[themeName]) {
+        themePreview.style.background = themes[themeName].main;
+      }
+    }
+
+    // Set initial value from settings or default
+    let settings = getSettings();
+    if (settings.theme && themes[settings.theme]) {
+      themeSelect.value = settings.theme;
+      setPreviewColor(settings.theme);
+    } else {
+      themeSelect.value = "cyan";
+      setPreviewColor("cyan");
+    }
+
+    themeSelect.addEventListener('change', function() {
+      const selected = themeSelect.value;
+      setPreviewColor(selected);
+      if (typeof applyTheme === "function") {
+        applyTheme(selected);
+      }
+    });
+
+    // Also update preview if theme is changed elsewhere
+    document.addEventListener("DOMContentLoaded", function() {
+      let settings = getSettings();
+      if (settings.theme && themes[settings.theme]) {
+        setPreviewColor(settings.theme);
+        themeSelect.value = settings.theme;
+      }
+    });
+  }
+});
+
+// Text stroke toggle logic for settings page
+document.addEventListener("DOMContentLoaded", function() {
+  const strokeToggle = document.getElementById('stroke-toggle');
+  if (strokeToggle) {
+    let settings = getSettings();
+    // Set initial state from settings or default false (off)
+    if (!('text-stroke' in settings) || settings['text-stroke'] === false || settings['text-stroke'] === "false") {
+      strokeToggle.checked = false;
+      document.body.classList.add('no-text-stroke');
+    } else {
+      strokeToggle.checked = true;
+      document.body.classList.remove('no-text-stroke');
+    }
+
+    strokeToggle.addEventListener('change', function() {
+      let settings = getSettings();
+      if (strokeToggle.checked) {
+        settings['text-stroke'] = true;
+        document.body.classList.remove('no-text-stroke');
+      } else {
+        settings['text-stroke'] = false;
+        document.body.classList.add('no-text-stroke');
+      }
+      saveSettings(settings);
+    });
+  }
+
+  // Apply on page load everywhere
+  let settings = getSettings();
+  if (!('text-stroke' in settings) || settings['text-stroke'] === false || settings['text-stroke'] === "false") {
+    document.body.classList.add('no-text-stroke');
+  } else {
+    document.body.classList.remove('no-text-stroke');
+  }
+});
+
+// Dynamically update favicon to match the current theme, fallback to gray or JyurixDepri.png if not found
+function updateFavicon(themeName) {
+  if (!themeName) {
+    let settings = getSettings ? getSettings() : {};
+    themeName = settings.theme || localStorage.getItem('theme') || 'cyan';
+  }
+  // Remove all favicon links
+  document.querySelectorAll('link[rel*="icon"]').forEach(link => link.remove());
+
+  // Compute correct relative path for favicon, robust for any folder depth
+  function getFaviconBasePath() {
+    // Find the path to /assets/ from current location
+    var path = window.location.pathname;
+    var assetsIdx = path.lastIndexOf('/assets/');
+    if (assetsIdx !== -1) {
+      // Already in /assets/, so use './'
+      return './';
+    }
+    // Count how many folders deep we are from the root
+    var depth = path.split('/').length - 2; // -2: one for leading slash, one for file
+    var up = '';
+    for (var i = 0; i < depth; i++) up += '../';
+    return up + 'assets/';
+  }
+
+  var basePath = getFaviconBasePath();
+  var faviconPath = `${basePath}${themeName}/JY.png`;
+  var fallbackPath = `${basePath}gray/JY.png`;
+  var depriPath = `${basePath}gray/JyurixDepri.png`;
+
+  // Try to load faviconPath, fallback to gray, then JyurixDepri
+  function setFavicon(pathArr) {
+    if (!pathArr.length) return;
+    var path = pathArr.shift();
+    var img = new window.Image();
+    img.onload = function() {
+      const favicon = document.createElement('link');
+      favicon.rel = 'icon';
+      favicon.type = 'image/png';
+      favicon.href = path + '?v=' + Date.now();
+      document.head.appendChild(favicon);
+    };
+    img.onerror = function() {
+      setFavicon(pathArr);
+    };
+    img.src = path;
+  }
+  setFavicon([faviconPath, fallbackPath, depriPath]);
+}
+
+// Patch applyTheme to also update favicon
+(function() {
+  var origApplyTheme = window.applyTheme;
+  window.applyTheme = function(name) {
+    if (origApplyTheme) origApplyTheme(name);
+    updateHomeLogos(name);
+    updateFavicon(name);
+  };
+})();
+
+// Initial favicon update on page load
+document.addEventListener("DOMContentLoaded", function() {
+  updateFavicon();
 });

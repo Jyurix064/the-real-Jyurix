@@ -1,12 +1,6 @@
-/* Include Phosphor Icons */
-@import url("./phosphor.css");
-
-/* Include Font Awesome */
-@import url("./fontawesome.css");
-
-/* Include Bootstrap */
-@import url("./bootstrap.css");
-
+:root {
+  --main: #00BFFF; /* Cyan */
+}
 /* General Styles */
 body {
   font-family: "Inter", sans-serif;
@@ -29,7 +23,7 @@ header {
 h1,
 h2 {
   margin: 0;
-  color: #449B3A; /* Darkened red */
+  color: var(--main); /* Darkened red */
 }
 
 main {
@@ -67,30 +61,30 @@ footer {
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: 0 0 10px #449B3A; /* Darkened red */
+  box-shadow: 0 0 10px var(--main); /* Darkened red */
   transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease; /* Include border-color in transition */
 }
 
 .button:hover {
   transform: translate3d(10px, -10px, 10px); /* Lift the button on hover */
-  box-shadow: 0 0 15px #449B3A; /* Darkened red */
-  border-color: #449B3A; /* Change border color without affecting size */
+  box-shadow: 0 0 15px var(--main); /* Darkened red */
+  border-color: var(--main); /* Change border color without affecting size */
   animation: pulse-dark-green 2s infinite alternate ease-in-out; /* Updated animation */
-  box-shadow: 0 0 15px rgb(0, 61, 0), 0 0 15px #449B3A; /* Darkened red */
-  border: 2px solid #449B3A; /* Darkened red */
+  box-shadow: 0 0 15px rgb(0, 61, 0), 0 0 15px var(--main); /* Darkened red */
+  border: 2px solid var(--main); /* Darkened red */
   position: relative;
 }
 
 @keyframes pulse-dark-green {
   0% {
-    color: #449B3A; /* Darkened red */
-    box-shadow: 0 0 10px #449B3A, 0 0 14px #449B3A; /* Darkened red */
-    border-color: #449B3A; /* Darkened red */
+    color: var(--main); /* Darkened red */
+    box-shadow: 0 0 10px var(--main), 0 0 14px var(--main); /* Darkened red */
+    border-color: var(--main); /* Darkened red */
   }
   100% {
-    color: #449B3A; /* Darkened red */
-    box-shadow: 0 0 15px #449B3A, 0 0 14px #449B3A; /* Darkened red */
-    border-color: #449B3A; /* Darkened red */
+    color: var(--main); /* Darkened red */
+    box-shadow: 0 0 15px var(--main), 0 0 14px var(--main); /* Darkened red */
+    border-color: var(--main); /* Darkened red */
   }
 }
 
@@ -114,7 +108,7 @@ footer {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.3s ease, transform 0.3s ease;
-  animation: pulse-#449B3A 2s infinite alternate ease-in-out; /* Updated animation */
+  animation: pulse-var(--main) 2s infinite alternate ease-in-out; /* Updated animation */
 }
 
 @media (max-width: 768px) {
@@ -181,7 +175,7 @@ ul li a {
 }
 
 ul li a:hover {
-  color: #449B3A; /* Darkened red */
+  color: var(--main); /* Darkened red */
   text-decoration: underline;
 }
 
@@ -192,7 +186,7 @@ a {
 }
 
 a:hover {
-  color: #449B3A; /* Darkened red */
+  color: var(--main); /* Darkened red */
   text-decoration: underline;
 }
 
@@ -357,18 +351,18 @@ a:hover {
   width: 600px;
   max-width: 400px;
   box-sizing: border-box;
-  background-color: #346b2e;
+  background-color: var(--main); /* Dark green */
   color: white;
 }
 
 .link-button i {
   font-size: 25px;
   flex-shrink: 0;
-  color: #449B3A; /* Apply dark green to all icons */
+  color: var(--main); /* Apply dark green to all icons */
 }
 
 .link-button:hover {
-  background: #449B3A;
+  background: var(--main);
   transform: translateY(-3px);
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
@@ -379,7 +373,7 @@ a:hover {
 }
 
 .link-button:focus {
-  outline: 2px solid #449B3A; /* Dark red focus outline */
+  outline: 2px solid var(--main); /* Dark red focus outline */
   outline-offset: 2px;
 }
 
@@ -396,7 +390,7 @@ a:hover {
 .link-button.instagram i,
 .link-button.aniworld i,
 .link-button.onlyfans i {
-  color: #449B3A; /* Ensure all icons use dark red */
+  color: var(--main); /* Ensure all icons use dark red */
 }
 
 /* Twitch Button */
@@ -757,10 +751,14 @@ br {
   margin: 0; /* Remove unnecessary margin */
 }
 h3, h2, h1 {
-  color: #449B3A; /* Darkened green */
+  color: var(--main); /* Darkened green */
   -webkit-text-stroke: 1px #7a7a7a; /* Light gray for good contrast */
 }
-
+body.no-text-stroke h1,
+body.no-text-stroke h2,
+body.no-text-stroke h3 {
+  -webkit-text-stroke: 0px transparent !important;
+}
 .what h2 {
   margin: 0; /* Remove unnecessary margin */
   font-size: 1.5rem;
@@ -972,7 +970,7 @@ input:checked + .slider:before {
 }
 
 .sidebar-nav li a:hover {
-  color: #449B3A; /* Highlight color on hover */
+  color: var(--main); /* Highlight color on hover */
 }
 
 /* Layout styles */
@@ -1042,7 +1040,7 @@ input:checked + .slider:before {
 .plan-link h3 {
   margin: 0 0 10px;
   font-size: 1.5rem;
-  color: #449B3A;
+  color: var(--main);
 }
 
 .plan-link p {
@@ -1171,7 +1169,7 @@ input:checked + .slider:before {
 
 .server-item h3 {
   margin: 0;
-  color: #449B3A;
+  color: var(--main);
 }
 
 .server-item p {
@@ -1192,7 +1190,7 @@ input:checked + .slider:before {
 
 .server-item .edit-button,
 .server-item .delete-button {
-  background: #449B3A;
+  background: var(--main);
   color: white;
   border: none;
   border-radius: 8px;
@@ -1213,4 +1211,7 @@ input:checked + .slider:before {
 .home-button img {
   width: 150px;
   height: auto;
+}
+.fas {
+  color: var(--main);
 }

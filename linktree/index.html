@@ -6,21 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Linktree - Jyurix</title>
   <link rel="stylesheet" href="../assets/style.css" />
-  <link rel="icon" href="../assets/JY.png" type="image/png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 </head>
 
 <body>
   <header class="header">
     <a href="/" class="close-button" title="Close">
-      <i class="fas fa-times"></i>
+      <i class="fas fa-times" style="color: red;"></i>
     </a>
     <h1 class="title-with-icon">
       <span class="title-text">Jyurix Linktree</span>
     </h1>
   </header>
   <main class="linktree-container">
-    <img src="../assets/JyurixDepri.png" alt="Jyurix Logo" class="profile-picture" />
+    <img id="jyurixdepri-logo" src="../assets/Jyuepri.png" alt="Jyurix Logo" class="profile-picture" />
     <div class="profile">
       <h2 class="profile-name">Jyurix</h2>
       <p class="profile-bio">🌟 Komm, schwarze Straße Mitaka!</p>
@@ -83,9 +82,36 @@
       </a>
     </div>
   </main>
+
+
   <footer class="footer">
-    <p>Made with <i class="fas fa-heart" style="color: #346b2e;"></i> by Jyurika Team</p>
+    <p>Made with <i class="fas fa-heart" style="color: var(--main);"></i> by Jyurika Team</p>
   </footer>
+  <script src="../assets/script.js"></script>
+  <script>
+    // Update JyurixDepri logo based on theme
+    function updateJyurixDepriLogo(themeName) {
+      if (!themeName) themeName = localStorage.getItem('theme') || 'green';
+      var depriLogo = document.getElementById('jyurixdepri-logo');
+      if (depriLogo) {
+        depriLogo.src = `../assets/${themeName}/JyurixDepri.png`;
+      }
+    }
+
+    // Patch applyTheme to also update JyurixDepri logo
+    (function() {
+      var origApplyTheme = window.applyTheme;
+      window.applyTheme = function(name) {
+        if (origApplyTheme) origApplyTheme(name);
+        updateJyurixDepriLogo(name);
+      };
+    })();
+
+    // Initial logo update on page load
+    document.addEventListener("DOMContentLoaded", function() {
+      updateJyurixDepriLogo(localStorage.getItem('theme') || 'green');
+    });
+  </script>
 </body>
 
 </html>
