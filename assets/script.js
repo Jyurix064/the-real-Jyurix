@@ -688,6 +688,80 @@ function updateFavicon(themeName) {
     updateFavicon(name);
   };
 })();
+// --- Slideshow for /assets/games/ images ---
+// 16:9 aspect ratio enforced for the container and images
+document.addEventListener("DOMContentLoaded", function() {
+  const container = document.getElementById('slideshow-container');
+  if (!container) return;
+
+  // Enforce 16:9 aspect ratio using inline styles
+  container.style.position = "relative";
+  container.style.width = "100%";
+  container.style.maxWidth = "900px";
+  container.style.aspectRatio = "16 / 9";
+  container.style.overflow = "hidden";
+  container.style.background = "#222";
+  container.style.margin = "0 auto";
+  container.style.display = "block";
+
+  // List of image filenames in /assets/games/
+  const gameImages = [
+    "Ark1.webp",
+    "Ark2.webp",
+    "Ark3.png",
+    "CounterStrike1.webp",
+    "CounterStrike2.webp",
+    "CounterStrike3.webp",
+    "Minecraft1.webp",
+    "Minecraft2.webp",
+    "Minecraft3.webp",
+    "Minecraft4.webp",
+    "Rust1.webp",
+    "Rust2.webp",
+    "Rust3.webp",
+    "Subnautica1.webp",
+    "Subnautica2.webp",
+    "Subnautica3.webp",
+    // Add more filenames here if needed
+  ];
+
+  // Compute correct relative path from current page to /assets/games/
+  function getGamesPath() {
+    // index.html is in /jyurika/, so games are at ../assets/games/
+    return "../assets/games/";
+  }
+  const gamesPath = getGamesPath();
+
+  // Create image elements
+  const slides = gameImages.map((filename, idx) => {
+    const img = document.createElement('img');
+    img.src = gamesPath + filename;
+    img.alt = filename.replace(/\.\w+$/, "");
+    img.className = "slideshow-image" + (idx === 0 ? " active" : "");
+    // Style for 16:9 fit (object-fit: cover, fill container)
+    img.style.position = "absolute";
+    img.style.top = "0";
+    img.style.left = "0";
+    img.style.width = "100%";
+    img.style.height = "100%";
+    img.style.objectFit = "cover";
+    img.style.transition = "opacity 0.6s";
+    img.style.opacity = idx === 0 ? "1" : "0";
+    container.appendChild(img);
+    return img;
+  });
+
+  if (slides.length < 2) return; // No need to animate if only one image
+
+  let current = 0;
+  setInterval(() => {
+    slides[current].style.opacity = "0";
+    slides[current].classList.remove("active");
+    current = (current + 1) % slides.length;
+    slides[current].style.opacity = "1";
+    slides[current].classList.add("active");
+  }, 3500); // 3.5 seconds per slide
+});
 
 // Initial favicon update on page load
 document.addEventListener("DOMContentLoaded", function() {

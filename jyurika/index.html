@@ -8,21 +8,63 @@
   <link rel="stylesheet" href="../assets/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link rel="icon" href="../assets/JY.png" type="image/png" />
+  <style>
+    .slideshow-container {
+      position: relative;
+      width: 100%;
+      max-width: 700px;
+      height: 220px;
+      margin: 30px auto 0 auto;
+      overflow: hidden;
+      border-radius: 18px;
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.15);
+      background: #222;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slideshow-image {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transition: opacity 1s ease;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .slideshow-image.active {
+      opacity: 1;
+      z-index: 2;
+      pointer-events: auto;
+    }
+  </style>
 </head>
 
 <body>
+
   <header class="header">
     <a href="/" class="close-button" title="Close">
       <i class="fas fa-times" style="color: red;"></i>
+    </a>
+    <a href="../settings/" class="settings-icon" title="Settings" style="position: absolute; top: 20px; right: 30px;">
+      <i class="fas fa-cog"></i>
     </a>
     <h1 class="title-with-icon">
       <span class="title-text">JYURIKA</span>
     </h1>
     <p>Your gateway to creating powerful servers effortlessly!</p>
   </header>
+  <div class="centered-container">
+    <div id="slideshow-container" class="slideshow-container"></div>
+  </div>
   <main class="layout">
     <aside class="sidebar">
       <ul class="sidebar-nav">
+        <img id="jyurika-logo" src="../assets/Jurika.png" alt="Jyurika Logo" class="sidebar-logo"
+          style="display: block; margin: 0 auto; width: 70%; height: auto;" />
         <li>
           <a href="./create/">
             <i class="fas fa-server"></i> Create Server
@@ -49,9 +91,7 @@
       <section class="what">
         <h2>Welcome to JYURIKA</h2>
         <p>
-          Build and manage your own servers with ease. Whether you're hosting
-          for gaming, development, or personal use, JYURIKA provides the tools
-          you need to succeed.
+            Host your own servers effortlessly with JYURIKA. For Gaming with friends, we provide reliable server hosting and powerful tools to help you succeed.
         </p>
       </section>
     </section>
@@ -61,4 +101,5 @@
   </footer>
   <script src="../assets/script.js"></script>
 </body>
+
 </html>
